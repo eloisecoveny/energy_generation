@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Vue Energy</title>
+	<script src="./js/bundle.js"></script>
+</head>
+<body>
+	<div id="app">
+
+		<h1>Energy Statistics in the UK</h1>
+
+		<div id="energy_list">
+			<h3>Types of fuel generation:</h3>
+
+			<h5 v-if="fromDateTime">From: {{ fromDateTime.toLocaleString() }} to {{  toDateTime.toLocaleString() }}</h5>
+
+			<li v-for="value of generationMix">{{ value["fuel"] }}: {{ value["perc"] }}%</li>
+		</div>
+
+		<GChart
+			type="PieChart"
+			:data="chartData"
+			:options="chartOptions"
+			v-if="chartData"
+		/>
+
+	</div>
+
+</body>
+</html>
